@@ -3,7 +3,7 @@
 Flask application instance
 """
 
-from flask import Flask
+from flask import Flask, make_response, jsonify
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -19,6 +19,7 @@ app.register_blueprint(app_views)
 def teardown_db(exception):
     """Closes storage on teardown"""
     storage.close()
+
 
 @app.errorhandler(404)
 def not_found(error):
